@@ -1,0 +1,49 @@
+﻿@page
+@using StudentInformationSystem.Model
+@model StudentInformationSystem.Pages.Student_Info.CreateStudentModel
+@{
+    ViewData["Title"] = "Create New Student";
+}
+
+<div>
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div hidden class="form-group">
+            <label asp-for="@Model.NewStudent.Id" class="control-label"> Id </label>
+            <input asp-for="@Model.NewStudent.Id" class="form-control" />
+            <span asp-validation-for="@Model.NewStudent.Id" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.NewStudent.Name" class="control-label"> Name </label>
+            <input asp-for="@Model.NewStudent.Name" class="form-control" />
+            <span asp-validation-for="@Model.NewStudent.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.NewStudent.Email" class="control-label"> Email </label>
+            <input asp-for="@Model.NewStudent.Email" class="form-control" />
+            <span asp-validation-for="@Model.NewStudent.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.NewStudent.Profession" class="control-label"> Profession </label>
+            <select asp-for="@Model.NewStudent.Profession" class="form-control"
+                    asp-items="Html.GetEnumSelectList<Profession>()">
+            </select>
+            <span asp-validation-for="@Model.NewStudent.Profession" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.NewStudent.Image" class="control-label"> Image </label>
+            <input asp-for="@Model.NewStudent.Image" class="form-control" />
+            <span asp-validation-for="@Model.NewStudent.Image" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-page="GetAllStudents" type="submit"> Back to List</a>
+</div>

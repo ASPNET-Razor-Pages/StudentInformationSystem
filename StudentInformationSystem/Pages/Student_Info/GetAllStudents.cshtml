@@ -1,0 +1,49 @@
+﻿@page 
+@model StudentInformationSystem.Pages.Student_Info.GetAllStudentsModel
+@{
+    ViewData["Title"] = "Get All Students";
+}
+<h1>List of Students</h1>
+
+<form method="get">
+    Search:
+    <input type="text" asp-for="SearchCriteria" />
+    <input type="submit" value="filter" />
+</form>
+<div>
+    <a asp-page="CreateStudent" >Create New Student</a>
+</div>
+<div>
+    <form method="get">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Profession</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var stu in Model.Students.Values)
+                {
+                    var imagePath = "/Images/" + @stu.Image;
+                    <tr>
+                        <td>@stu.Id</td>
+                        <td>@stu.Name</td>
+                        <td>@stu.Email</td>
+                        <td>@stu.Profession</td>
+                        <td><img src="@imagePath" /></td>
+                        <td>
+                            <button asp-page="/Student_Info/EditStudent" asp-route-id="@stu.Id" class="btn btn-primary">Edit</button>
+                            <button class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@stu.Id">Delete</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </form>
+</div>
