@@ -38,7 +38,7 @@
                         <td><img src="@imagePath" /></td>
                         <td>
                             <button asp-page="/Student_Info/EditStudent" asp-route-id="@stu.Id" class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@stu.Id">Delete</button>
+                            <a class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@stu.Id">Delete</a>
                         </td>
                     </tr>
                 }

@@ -40,13 +40,17 @@ namespace StudentInformationSystem.Pages.Student_Info
             }
             // fill up with data or information
             return Page();
-        }
+        }      
 
-       
-
-        public IActionResult OnPostDelete(int id)
+        public void OnGetDelete(int id)
         {
-            return Page();
+            Student student = _repo.GetStudentById(id);
+            if (!ModelState.IsValid)
+            {
+               
+            }
+            // Delete object here
+            _repo.DeleteStudent(student);           
         }
 
     }

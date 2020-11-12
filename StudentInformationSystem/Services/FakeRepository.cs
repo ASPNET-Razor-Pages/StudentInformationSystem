@@ -92,6 +92,15 @@ namespace StudentInformationSystem.Services
             }
         }
 
+        // Delete student
+        public void DeleteStudent(Student student)
+        {
+            if (student != null)
+            {
+                Students.Remove(student.Id);
+            }
+        }
+
 
     }
 }
