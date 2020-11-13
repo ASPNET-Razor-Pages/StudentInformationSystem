@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentInformationSystem.Model;
 using StudentInformationSystem.Services;
+using StudentInformationSystem.Interfaces;
 
 namespace StudentInformationSystem.Pages.Student_Info
 {
     public class EditStudentModel : PageModel
     {
-        private FakeRepository _repo;
+        private IStudentRepository _repo;
 
         [BindProperty]
         public Student Student { get; set; }
 
-        public EditStudentModel(FakeRepository repo)
+        public EditStudentModel(IStudentRepository repo)
         {
              Student = new Student();
             _repo = repo;

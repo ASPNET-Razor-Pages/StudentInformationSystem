@@ -1,4 +1,5 @@
-﻿using StudentInformationSystem.Model;
+﻿using StudentInformationSystem.Interfaces;
+using StudentInformationSystem.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentInformationSystem.Services
 {
-    public class FakeRepository
+    public class FakeRepository : IStudentRepository
     {
         public Dictionary<int, Student> Students { get; set; }
         public FakeRepository()

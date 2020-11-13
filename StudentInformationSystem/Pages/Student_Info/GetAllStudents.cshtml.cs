@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentInformationSystem.Model;
 using StudentInformationSystem.Services;
+using StudentInformationSystem.Interfaces;
 
 namespace StudentInformationSystem.Pages.Student_Info
 {
@@ -23,13 +24,18 @@ namespace StudentInformationSystem.Pages.Student_Info
         // This property we use when we make a Search of specific objects
         public string SearchCriteria { get; set; }
 
-        public FakeRepository _repo;
+        public IStudentRepository _repo;
         // one your registered your DI service in startup class- configure method
-        public GetAllStudentsModel(FakeRepository repo)
+        public GetAllStudentsModel(IStudentRepository repo)
         {
             _repo = repo;
-            // Here are we call the GetAllStudents method to retrieve current Dictionary Object List
+            // Here are we call the GetAllStudents method to retrieve current Dictionary Object List            
             Students = _repo.GetAllStudents();
+            // Check students Null object
+            if(Students == null)
+            {
+                Students = new Dictionary<int, Student>();
+            }
         }
         public IActionResult OnGet()
         {
@@ -42,15 +48,15 @@ namespace StudentInformationSystem.Pages.Student_Info
             return Page();
         }      
 
-        public void OnGetDelete(int id)
+        public IActionResult OnGetDelete(int id)
         {
             Student student = _repo.GetStudentById(id);
-            if (!ModelState.IsValid)
-            {
-               
-            }
+           
             // Delete object here
-            _repo.DeleteStudent(student);           
+            _repo.DeleteStudent(student);
+
+            // Refresh Page 
+            return RedirectToPage("GetAllStudents");
         }
 
     }

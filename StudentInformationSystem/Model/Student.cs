@@ -28,8 +28,8 @@ namespace StudentInformationSystem.Model
         public string Name { get; set; }
 
         [EmailAddress]
-        [Required(ErrorMessage = "Profession is required")]
-
+        [Required(ErrorMessage = "Email is required")]
+            
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Image is required")]

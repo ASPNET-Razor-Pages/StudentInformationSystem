@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentInformationSystem.Model;
 using StudentInformationSystem.Services;
+using StudentInformationSystem.Interfaces;
 
 namespace StudentInformationSystem.Pages.Student_Info
 {
     public class CreateStudentModel : PageModel
     {
-        private FakeRepository _repo;
+        private IStudentRepository _repo;
 
         [BindProperty]
         public Student NewStudent { get; set; }
 
-        public CreateStudentModel(FakeRepository repo)
+        public CreateStudentModel(IStudentRepository repo)
         {
             _repo = repo;
             NewStudent = new Student();
