@@ -10,7 +10,9 @@ namespace StudentInformationSystem.Services
 {
     public class JsonStudentRepository : IStudentRepository
     {
-        string filePath = @"C:\Users\zk222\source\repos\StudentInformationSystem\StudentInformationSystem\Data\JsonStudent.json";
+        string filePath = @".\Data\JsonStudent.json";
+
+        //string filePath = @"C:\Users\zk222\source\repos\StudentInformationSystem\StudentInformationSystem\Data\JsonStudent.json";
         public Dictionary<int,Student> Students { get; set; }
         public JsonStudentRepository()
         {

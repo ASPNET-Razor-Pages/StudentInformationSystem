@@ -14,20 +14,34 @@ namespace StudentInformationSystem.Helpers
         // Deserialization means : convert Jsonstring into Objects
         public static Dictionary<int, Student> ReadFromJsonDeSerialization(string filePath)
         {
-            string JsonContent = File.ReadAllText(filePath);
+            Dictionary<int, Student> dictObjects = null;
+            try
+            {
+                string JsonContent = File.ReadAllText(filePath);
+                dictObjects = JsonConvert.DeserializeObject<Dictionary<int, Student>>(JsonContent);
+                return dictObjects;
+            }
+            catch(Exception ex)
+            {
 
-            var dicObject = JsonConvert.DeserializeObject<Dictionary<int, Student>>(JsonContent);
-
-            return dicObject;
+            }
+            return dictObjects;
         }
 
         // Serialization means : Convert Objects into JsonString
         public static void WriteToJsonSerialization(Dictionary<int, Student> students , string filePath)
-        {   
-            // convert 
-            string JsonContent = JsonConvert.SerializeObject(students);
-            // perfrom here write operation means Save Jsoncontent into File
-            File.WriteAllText(filePath, JsonContent);
+        {
+            try
+            {
+                // convert 
+                string JsonContent = JsonConvert.SerializeObject(students);
+                // perfrom here write operation means Save Jsoncontent into File
+                File.WriteAllText(filePath, JsonContent);
+            }
+            catch(Exception ex)
+            {
+
+            }            
         }
     }
 }

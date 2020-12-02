@@ -12,7 +12,7 @@ namespace StudentInformationSystem.Pages.Student_Info
     {
         // Target property for UI 
         // This property we use when we display collection of objects first time in a Page
-         public Dictionary<int, Student> Students { get; set; }
+        public Dictionary<int, Student> Students { get; set; }
 
         // Target property for Post Method 
         // This property we use when we make a Post request of form

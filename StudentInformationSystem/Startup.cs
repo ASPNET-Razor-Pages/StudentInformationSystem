@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StudentInformationSystem.Services;
 using StudentInformationSystem.Interfaces;
+using System;
 
 namespace StudentInformationSystem
 {
@@ -22,6 +23,13 @@ namespace StudentInformationSystem
         {
             services.AddRazorPages();
             services.AddSingleton<IStudentRepository,JsonStudentRepository>();
+            //services.AddTransient<HttpClientServices>();
+            services.AddHttpClient();
+            // ............... Web API Base Address configuration ..................................
+            string config = Configuration.GetValue<string>("GetBaseAddressFromAPI");
+            services.AddHttpClient("base", c=> {
+                c.BaseAddress = new Uri(config);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
